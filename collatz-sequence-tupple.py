@@ -12,7 +12,7 @@ import time
 
 
 # Global Variables:
-    # For the automated version this is the number which collatz() will start at.
+# For the automated version this is the number which collatz() will start at.
 
 
 trials = 0
@@ -20,7 +20,9 @@ trials = 0
 version = input("(r)ecursive or (i)nput? ")
 
 # FUNCTIONS:
-    # COLLATZ() takes any integer and works its way to 1.
+# COLLATZ() takes any integer and works its way to 1.
+
+
 def collatz(number):
     if (int(number) % 2 == 0):
         # print(str(int(number) // 2))
@@ -30,12 +32,13 @@ def collatz(number):
         return 3 * int(number) + 1
 
     # this function determines how the next number which will be tested will be determined
+
+
 def getTestNumber():
     # testNumber = random.randint(2**40000, 2**50000)
     # return random.getrandbits(60000) ** 2
     # testNumber = int(input("Enter a large starting integer: "))
     return testNumber + 1
-
 
 
 if version == 'i':
@@ -49,23 +52,25 @@ if version == 'i':
             print('Invalid input, enter an integer.')
         except KeyboardInterrupt:
             raise sys.exit(0)
-else: # if not (i), then (r)ecursive mode:
-    while True: # Main loop
-        testNumber = int(input("Enter a large starting integer: ")) # starting int
-        while testNumber != 1: #if we haven't reached 1 do the following
+else:  # if not (i), then (r)ecursive mode:
+    while True:  # Main loop
+        # starting int
+        testNumber = int(input("Enter a large starting integer: "))
+        while testNumber != 1:  # if we haven't reached 1 do the following
             # print("Trying: " + Fore.RED + str(testNumber) + Style.RESET_ALL) #print the number we're trying
-            print("(" + str(testNumber) +", ", end='')
-            testingInt = testNumber #store our test number in a temporary value "testingInt"
-            steps = 0 # keeps track of how many steps we take to reach 1
-            while testingInt != 1: # loop which reaches 1 running collatz()
-                testingInt = collatz(testingInt) # collatz the temporary testingInt
-                steps += 1 #increase steps taken by one
-            else: # if testingInt has reached one, do the following
+            print("(" + str(testNumber) + ", ", end='')
+            testingInt = testNumber  # store our test number in a temporary value "testingInt"
+            steps = 0  # keeps track of how many steps we take to reach 1
+            while testingInt != 1:  # loop which reaches 1 running collatz()
+                # collatz the temporary testingInt
+                testingInt = collatz(testingInt)
+                steps += 1  # increase steps taken by one
+            else:  # if testingInt has reached one, do the following
                 # print that it works
                 #print(str(testNumber) + " Works, " + Fore.GREEN + str(steps) + Style.RESET_ALL + " step taken.")
                 print(str(steps) + ")", end='\n')
                 # set testNumber = to the next untested number using getTestNumber()
                 testNumber = getTestNumber()
-                #increase the count of trials we've run
+                # increase the count of trials we've run
                 trials += 1
                 time.sleep(0.001)
