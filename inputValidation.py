@@ -6,24 +6,25 @@ choices = ['McMuffin', 'Hashbrown', 'Quarter Pounder']
 
 
 for i, theType in enumerate(types):
-    print(f'Enter a  {theType}')
+    print()
+    print(f'pyinputplus.{theType}():')
     if theType == 'str':
-        pyip.inputStr()
+        pyip.inputStr("Enter a String: ")
     elif theType == 'num':
-        pyip.inputNum()
+        pyip.inputNum("Enter a number: ")
     elif theType == 'choice':
         pyip.inputChoice(choices)
     elif theType == 'menu':
         pyip.inputMenu(choices, lettered=True)
     elif theType == 'time':
-        pyip.inputTime()
+        pyip.inputTime("Enter a time [xx:xx]: ")
     elif theType == 'yesno':
-        pyip.inputYesNo()
+        pyip.inputYesNo("Enter Yes or No: ")
     elif theType == 'bool':
-        pyip.inputBool()
+        pyip.inputBool("Enter a boolean: ")
     elif theType == 'email':
-        pyip.inputEmail()
+        pyip.inputEmail("Enter an email: ")
     elif theType == 'filepath':
-        pyip.inputFilepath()
+        pyip.inputFilepath("Enter a filepath: ")
     elif theType == 'password':
-        pyip.inputPassword()
+        pyip.inputPassword("Enter a password: ")
