@@ -32,7 +32,6 @@ for file in CWDlist:
 # using a dictionary to store working directory names and size:
 ################################
 CWD = Path.cwd()
-print(CWD)
 CWDdict = {}
 
 # for all files in working directory:
@@ -40,10 +39,16 @@ CWDdict = {}
 for file in os.listdir(workingDirectory):
     CWDdict[file] = round(os.path.getsize(file) / kilobyte, 2)
 
+# padding for printing files and their size
 maxFileCharacterWidth2 = len(getMaxString(CWDdict.keys())) + 3
 maxFilesizeCharacterWidth = len(getMaxString(CWDdict.items())) + 10
 
 for file, size in CWDdict.items():
     print(f'{file}'.ljust(maxFileCharacterWidth2) + 
         f'{size} KB'.rjust(maxFilesizeCharacterWidth))
+
+print(f'\nLARGETS FILES IN {CWD}:')
+for file in sorted(CWDdict.items(), key=lambda x: x[1], reverse=True):
+    print(f'{file[0]}'.ljust(maxFileCharacterWidth2) +
+          f'{file[1]} KB'.rjust(maxFilesizeCharacterWidth))
 
