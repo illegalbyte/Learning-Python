@@ -12,11 +12,10 @@
             "command": "${config:python.pythonPath}",
             "type": "shell",
             "args": [
-                "${file}"
+                "${file};"
             ],
             "presentation": {
                 "reveal": "always",
-                "panel": "new"
             },
             "problemMatcher": {
                 "fileLocation": "absolute",
@@ -29,7 +28,11 @@
                     },
                     {
                         "regexp": "^\\s+(.+?)$",
-                        "code": 1
+                        "code": 1,
+                        "args": [
+                            "&&",
+                            "exit"
+                        ]
                     }
                 ]
             }
