@@ -47,7 +47,7 @@ for file, size in CWDdict.items():
     print(f'{file}'.ljust(maxFileCharacterWidth2) + 
         f'{size} KB'.rjust(maxFilesizeCharacterWidth))
 
-print(f'\nLARGETS FILES IN {CWD}:')
+print(f'\nLARGEST FILES IN {CWD}:')
 for file in sorted(CWDdict.items(), key=lambda x: x[1], reverse=True):
     print(f'{file[0]}'.ljust(maxFileCharacterWidth2) +
           f'{file[1]} KB'.rjust(maxFilesizeCharacterWidth))
