@@ -26,4 +26,14 @@ searchTerm = pyip.inputStr('Text to search for: ')
 directoryToSearch = pyip.inputFilepath('Directory to search: ', mustExist=True)
 globmatch = pyip.inputStr("Enter a glob for filetype: ")
 
-pp.pprint(findkeyword(searchTerm,globmatch ,directoryToSearch ))
+# pp.pprint(findkeyword(searchTerm,globmatch ,directoryToSearch ))
+for filePath, lines in findkeyword(searchTerm, globmatch, directoryToSearch).items():
+    print(filePath +":      [", end='')
+    
+    for line in lines:
+        if line != lines[-1]:
+            print(str(line) + ", ", end='')
+        else:
+            print(str(line), end='')
+    print(']')
+
