@@ -2,15 +2,19 @@
 
 import subprocess
 from pprint import pprint as pp
-import pathlib
 import shutil
 from configparser import ConfigParser
 import psycopg2
-import re
 import json
 
 from psycopg2.extensions import JSON
 
+'''DEPENDENCIES:
+	-- dockutil (brew)
+	-- shutil (pip)
+	-- psycopg2 (pip)
+	-- configparser (pip)
+'''
 
 # get UUID of Device
 def get_hardware_uuid():
@@ -73,6 +77,7 @@ def connect():
             conn.close()
             print('Database connection closed.')
 
+# 
 if __name__ == '__main__':
     connect()
 
@@ -144,17 +149,21 @@ def getDockItems():
 
 	return dictofDockItems
 
-
+# Get Device UUID
 deviceUUID = get_hardware_uuid()
 
+# Get Dock Items
 dockItems = getDockItems()
 
-jsondockItems = json.dumps(getDockItems())
+# Store dock items as json file
+jsondockItems = json.dumps(dockItems)
 
+# store the plist path
 dockPlistPath = dockItems[0]['plistPath']
 
+# make a backup of the plist 
 shutil.copy(str(dockPlistPath), str('./'))
 
-
+# insert the data into the database
 insert_dockData()
 

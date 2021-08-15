@@ -2,7 +2,7 @@ import pyinputplus as pyip
 
 types = ['str', 'num', 'choice', 'menu', 'time',
          'yesno', 'bool', 'email', 'filepath', 'password']
-choices = ['McMuffin', 'Hashbrown', 'Quarter Pounder']
+choices = ['McMuffin', 'Hashbrown', 'Pancakes']
 
 
 for i, theType in enumerate(types):
@@ -11,7 +11,7 @@ for i, theType in enumerate(types):
     if theType == 'str':
         pyip.inputStr("Enter a String: ")
     elif theType == 'num':
-        pyip.inputNum("Enter a number: ")
+        pyip.inputNum("Enter a number: ", min=1)
     elif theType == 'choice':
         pyip.inputChoice(choices)
     elif theType == 'menu':
