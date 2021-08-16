@@ -16,8 +16,11 @@ soup = bs4.BeautifulSoup(res.text, 'html.parser')
 
 # TODO: Open a browser tab for each result.
 linkElems = soup.select('.package-snippet')
+limitTabSpam = 0
 for link in linkElems:
 	urlToOpen = 'https://pypi.org' + link.get('href')
 	print('Opening ', urlToOpen)
 	webbrowser.open(urlToOpen)
-	
+	limitTabSpam += 1;
+	if limitTabSpam == 10:
+		break
