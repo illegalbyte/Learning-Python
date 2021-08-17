@@ -9,3 +9,5 @@ database.ini
 com.apple.dock.plist
 index.html
 getOpenWeather.py
+keys.py
+__pycache__/keys.cpython-39.pyc
