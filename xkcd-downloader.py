@@ -16,11 +16,11 @@ while not url.endswith('#'):
 
 
 	# Find the URL of the comic image
-	comicURL = xkcdHTML.select('#comic img')[0].get('src')
+	comicURL = 'https:' + xkcdHTML.select('#comic img')[0].get('src')
 
 	# Download the comic image
 	print(f'Downloading image {comicURL}...')
-	req = requests.get('https:' + comicURL)
+	req = requests.get(comicURL)
 	req.raise_for_status()
 
 	# Save the image to ./xkcd
