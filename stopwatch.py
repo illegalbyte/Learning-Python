@@ -18,7 +18,7 @@ try:
 		input()
 		lapTime = round(time.time() - lastTime, 2)
 		totalTime = round(time.time() - startTime, 2)
-		print(f'Lap {lapNum}: {totalTime} ({lapTime})')
+		print(f'Lap {lapNum}: {lapTime}s – Total: {totalTime}')
 		lapNum += 1
 		lastTime = time.time()
 except KeyboardInterrupt:
