@@ -9,7 +9,8 @@ import json
 
 from psycopg2.extensions import JSON
 
-'''DEPENDENCIES:
+'''
+DEPENDENCIES:
 	-- dockutil (brew)
 	-- shutil (pip)
 	-- psycopg2 (pip)
@@ -161,7 +162,7 @@ jsondockItems = json.dumps(dockItems)
 # store the plist path
 dockPlistPath = dockItems[0]['plistPath']
 
-# make a backup of the plist 
+# make a backup of the plist before changes are made
 shutil.copy(str(dockPlistPath), str('./'))
 
 # insert the data into the database
