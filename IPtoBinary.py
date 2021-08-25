@@ -23,7 +23,7 @@ binaryPositionValue = [128, 64, 32, 16, 8, 4, 2, 1]
 			#change decimal number to = the result of the subtraction
 
 
-def Convert_IP(decimal_numbers):
+def Convert_IP(decimal_numbers: str) -> str:
 	Binary = ''
 	# loops over each '127' and '0' and '1' values in the IP:
 	for decimalNumber in decimal_numbers:
@@ -52,6 +52,7 @@ def ConvertBinary(binaryIP):
 		fulldecimalIP.append(decimal)
 	return '.'.join(map(str, fulldecimalIP))
 
-
+print("BINARY OUTPUT: ", end='')
 print(Convert_IP(decimal_numbers))
+print("IP OUTPUT: ", end='')
 print(ConvertBinary(Convert_IP(decimal_numbers)))
