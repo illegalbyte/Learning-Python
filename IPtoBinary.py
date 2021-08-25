@@ -1,6 +1,7 @@
 #! python3
 
 import pyinputplus as pyip
+from textwrap import wrap
 
 decimal_ip = pyip.inputStr("ENTER A DECIMAL NUMBER IP [EG: 127.0.0.1]: ")
 
@@ -39,4 +40,18 @@ def Convert_IP(decimal_numbers):
 			Binary += binary_value 
 	return Binary
 
+def ConvertBinary(binaryIP):
+	bytes = wrap(binaryIP, 8)
+	# for each byte:
+	fulldecimalIP = []
+	for byte in bytes:
+		decimal = 0
+		#for each bit in the byte * by the binary position value 
+		for i, bit in enumerate(byte):
+			decimal += int(bit) * binaryPositionValue[i]
+		fulldecimalIP.append(decimal)
+	return '.'.join(map(str, fulldecimalIP))
+
+
 print(Convert_IP(decimal_numbers))
+print(ConvertBinary(Convert_IP(decimal_numbers)))
