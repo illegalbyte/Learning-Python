@@ -10,10 +10,12 @@ WIDTH, HEIGHT = bext.size()
 	# Can't print to the last column on Windows without it adding a new line
 	# automatically, so reduce by one
 WIDTH -= 1
-NUMBER_OF_LOGOS = 5
+NUMBER_OF_LOGOS = 10
 PAUSE_AMOUNT = 0.2
 
 COLOURS = ['red','green','yellow','blue','magenta','cyan','white']
+LOGO = '<3'
+LOGO_LENGTH = len(LOGO) + 1
 
 UP_RIGHT   = 'ur'
 UP_LEFT    = 'ul'
@@ -35,8 +37,8 @@ def main():
 	for i in range(NUMBER_OF_LOGOS):
 		logos.append(
 			{COLOUR: random.choice(COLOURS),
-			X: random.randint(1, WIDTH - 4),
-			Y: random.randint(1, HEIGHT - 4),
+			X: random.randint(1, WIDTH - LOGO_LENGTH + 1),
+			Y: random.randint(1, HEIGHT - LOGO_LENGTH + 1),
 			DIR: random.choice(DIRECTIONS)
 			}
 		)
@@ -51,7 +53,7 @@ def main():
 		for logo in logos:
 			# Erase logo's current location:
 			bext.goto(logo[X], logo[Y])
-			print('   ', end='')
+			print(' '*LOGO_LENGTH, end='')
 
 			originalDirection = logo[DIR]
 
@@ -62,31 +64,27 @@ def main():
 			elif logo[X] == 0 and logo[Y] == HEIGHT - 1:
 				logo[DIR] = UP_RIGHT
 				cornerBounces += 1
-			elif logo[X] == WIDTH - 3 and logo[Y] == 0:
+			elif logo[X] == WIDTH - LOGO_LENGTH and logo[Y] == 0:
 				logo[DIR] = DOWN_LEFT
 				cornerBounces += 1
-			elif logo[X] == WIDTH - 3 and logo[Y] == HEIGHT - 1:
+			elif logo[X] == WIDTH - LOGO_LENGTH and logo[Y] == HEIGHT - 1:
 				logo[DIR] = UP_LEFT
 				cornerBounces += 1
-
 			# see if logo bounces off left edge
 			elif logo[X] == 0 and logo[DIR] == UP_LEFT:
 				logo[DIR] = UP_RIGHT
 			elif logo[X] == 0 and logo[DIR] == DOWN_LEFT:
 				logo[DIR] = DOWN_RIGHT
 			# see if logo bounces off right edge
-			# 	width - 3 because 'DVD' has 3 letters
-			elif logo[X] == WIDTH - 3 and logo[DIR] == UP_RIGHT:
+			elif logo[X] == WIDTH - LOGO_LENGTH and logo[DIR] == UP_RIGHT:
 				logo[DIR] = UP_LEFT
-			elif logo[X] == WIDTH - 3 and logo[DIR] == DOWN_RIGHT:
+			elif logo[X] == WIDTH - LOGO_LENGTH and logo[DIR] == DOWN_RIGHT:
 				logo[DIR] = DOWN_LEFT
-			
 			# if logo bounces off the top edge
 			elif logo[Y] == 0 and logo[DIR] == UP_LEFT:
 				logo[DIR] = DOWN_LEFT
 			elif logo[Y] == 0 and logo[DIR] == UP_RIGHT:
 				logo[DIR] = DOWN_RIGHT
-
 			# if logo bounces off bottom edge 
 			elif logo[Y] == HEIGHT - 1 and logo[DIR] == DOWN_LEFT:
 				logo[DIR] = UP_LEFT
@@ -113,16 +111,16 @@ def main():
 				logo[X] -= 2
 				logo[Y] += 1
 
-		# Display number of corner bounces
-		bext.goto(5, 0)
-		bext.fg('white')
-		print(f'Corner Bounces: {cornerBounces}', end='')
+			# Display number of corner bounces
+			bext.goto(5, 0)
+			bext.fg('white')
+			print(f'Corner Bounces: {cornerBounces}', end='')
 
 		# Draw logos at their new location
 		for logo in logos:
 			bext.goto(logo[X], logo[Y])
 			bext.fg(logo[COLOUR])
-			print('DVD', end='')
+			print(f'{LOGO}', end='')
 
 		bext.goto(0, 0)
 
@@ -137,5 +135,5 @@ if __name__ == '__main__':
 	# Handle Ctr-C to exit:
 	except KeyboardInterrupt:
 		print()
-		print('Bouncing DVD logo.')
+		print('Bouncing DVD logo, adapted from Al-Sweigart\'s Book of Python Projects (https://inventwithpython.com).')
 		sys.exit() 
