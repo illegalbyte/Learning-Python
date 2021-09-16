@@ -4,18 +4,19 @@ import sys
 import random
 import time
 import bext
+import pyinputplus as pyip
 
 # CONSTANTS
 WIDTH, HEIGHT = bext.size()
 	# Can't print to the last column on Windows without it adding a new line
 	# automatically, so reduce by one
 WIDTH -= 1
-NUMBER_OF_LOGOS = 10
+NUMBER_OF_LOGOS = 100
 PAUSE_AMOUNT = 0.2
 
 COLOURS = ['red','green','yellow','blue','magenta','cyan','white']
-LOGO = '<3'
-LOGO_LENGTH = len(LOGO) + 1
+LOGO = 'Novio'
+LOGO_LENGTH = len(LOGO) + 2
 
 UP_RIGHT   = 'ur'
 UP_LEFT    = 'ul'
@@ -32,6 +33,7 @@ DIR = 'direction'
 def main():
 	bext.clear()
 
+	LOGO = pyip.inputStr("ENTER TEXT TO BOUNCE AROUND TERMINAL\n> ")
 	# Generate some logos:
 	logos = []
 	for i in range(NUMBER_OF_LOGOS):
@@ -47,7 +49,7 @@ def main():
 			logos[-1][X] -= 1
 
 	# count corner bounces
-	cornerBounces = 0 
+	cornerBounces = 0
 	# Main program loop
 	while True: 
 		for logo in logos:
@@ -135,5 +137,5 @@ if __name__ == '__main__':
 	# Handle Ctr-C to exit:
 	except KeyboardInterrupt:
 		print()
-		print('Bouncing DVD logo, adapted from Al-Sweigart\'s Book of Python Projects (https://inventwithpython.com).')
+		print('Bouncing logo animation, adapted from Al-Sweigart\'s Book of Python Projects (https://inventwithpython.com).')
 		sys.exit() 
